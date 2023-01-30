@@ -1,0 +1,15 @@
+services:
+  pythonapp:
+    build: ./python/
+    command: sh -c "sleep 10s ; python3 ./extraccion.py"
+    depends_on:
+      - mysql
+
+  mysql:
+    build: ./mysql/
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'fact'
+      MYSQL_ROOT_PASSWORD: 'brambila696'
+    ports:
+      - '0:3306'
